@@ -1,0 +1,21 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MiAgendaUTN.ViewModels"
+             x:Class="MiAgendaUTN.Views.DetalleTareaPage"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:DetalleTareaViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="10">
+            <Label Text="{Binding Tarea.Titulo}" FontSize="24" FontAttributes="Bold" />
+            <Label Text="{Binding Tarea.Descripcion}" FontSize="18" />
+            <Label Text="{Binding Tarea.FechaVencimiento, StringFormat='Vence: {0:dd/MM/yyyy}'}" />
+            <Label Text="{Binding Tarea.Prioridad, StringFormat='Prioridad: {0}'}" />
+            <Label Text="{Binding Tarea.Categoria, StringFormat='Categoría: {0}'}" />
+            <Button Text="Eliminar Tarea" Command="{Binding EliminarTareaCommand}" BackgroundColor="Red" TextColor="White"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MiAgendaUTN.Views.CrearEditarTareaPage"
+             Title="{Binding Title}">
+
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="15">
+
+            <!-- Título -->
+            <Label Text="Título *" FontAttributes="Bold" />
+            <Entry Text="{Binding Titulo}" 
+                   Placeholder="Ej: Estudiar para examen"
+                   MaxLength="100" />
+
+            <!-- Descripción -->
+            <Label Text="Descripción" FontAttributes="Bold" />
+            <Editor Text="{Binding Descripcion}"
+                    Placeholder="Detalles de la tarea..."
+                    HeightRequest="100"
+                    MaxLength="500" />
+
+            <!-- Fecha de vencimiento -->
+            <Label Text="Fecha de vencimiento *" FontAttributes="Bold" />
+            <DatePicker Date="{Binding FechaVencimiento}"
+                       MinimumDate="{Binding FechaMinima}"
+                       Format="dd/MM/yyyy" />
+
+            <!-- Categoría -->
+            <Label Text="Categoría *" FontAttributes="Bold" />
+            <Picker ItemsSource="{Binding Categorias}"
+                   SelectedItem="{Binding CategoriaSeleccionada}"
+                   Title="Selecciona categoría" />
+
+            <!-- Prioridad -->
+            <Label Text="Prioridad *" FontAttributes="Bold" />
+            <Picker ItemsSource="{Binding Prioridades}"
+                   SelectedItem="{Binding PrioridadSeleccionada}"
+                   Title="Selecciona prioridad" />
+
+            <!-- Completada (solo en modo edición) -->
+            <HorizontalStackLayout Spacing="10" 
+                                  IsVisible="{Binding EsModoEdicion}">
+                <CheckBox IsChecked="{Binding EstaCompletada}"
+                         Color="#2A9D8F" />
+                <Label Text="Marcar como completada"
+                      VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <!-- Mensaje de error -->
+            <Border StrokeShape="RoundRectangle 5"
+                    Background="#FFEBEE"
+                    Padding="10"
+                    IsVisible="{Binding TieneError}">
+                <Label Text="{Binding Mensaje}"
+                      TextColor="#D32F2F" />
+            </Border>
+
+            <!-- Botones -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="0,20,0,0">
+                <Button Grid.Column="0"
+                       Text="Cancelar"
+                       Command="{Binding CancelarCommand}"
+                       BackgroundColor="#9E9E9E"
+                       TextColor="White" />
+
+                <Button Grid.Column="1"
+                       Text="Guardar"
+                       Command="{Binding GuardarCommand}"
+                       BackgroundColor="#2A9D8F"
+                       TextColor="White"
+                       FontAttributes="Bold" />
+            </Grid>
+
+            <!-- Indicador de carga -->
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                             IsVisible="{Binding IsBusy}"
+                             Color="#2A9D8F" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

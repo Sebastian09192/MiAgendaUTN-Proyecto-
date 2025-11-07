@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MiAgendaUTN.ViewModels"
+             x:Class="MiAgendaUTN.Views.AcercaDePage"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:AcercaDeViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="30" Spacing="15">
+        <Label Text="MiAgendaUTN" FontSize="32" FontAttributes="Bold" HorizontalOptions="Center" />
+        <Label Text="{Binding Descripcion}" FontSize="18" />
+        <Label Text="{Binding Version, StringFormat='Versión {0}'}" FontSize="14" TextColor="Gray" HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>
